@@ -5,3 +5,10 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, 'index.html')
+
+def signup(request):
+    if request.method == 'POST':
+        pass
+    else:
+        return render(request, 'signup.html')
+
