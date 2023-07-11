@@ -17,7 +17,7 @@ def signup(request):
         if password == password2:
             pass
         else:
-
+             
 
     else:
         return render(request, 'signup.html')
