@@ -294,7 +294,14 @@
                                         Liked <strong> taiye</strong> and <strong> 209 Others </strong>
                                     </div> -->
                                     <div class="">
-                                        Liked <strong>{{post.no_of_likes}} persons</strong>
+                                        {% if post.no_of_likes == 0 %}
+                                        <p><strong>No likes</strong></p>
+                                        {% elif post.no_of_likes == 1 %}
+                                        <p>Liked by <strong>1 person</strong></p>
+                                        {% else %}
+                                        <p>Liked by <strong>{{post.no_of_likes}} people</strong></p>
+                                        {% endif %}
+                                        
                                     </div>
                                 </div>
                                 <div>
@@ -334,9 +341,9 @@
                             </div>
     
                         </div>
-
+                        
                         {% endfor %}
-    
+                        <br />
                         <!-- post 2-->                       
 <!--                     
                         <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
