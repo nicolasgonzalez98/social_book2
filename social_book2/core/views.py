@@ -21,11 +21,12 @@ def index(request):
 @login_required(login_url='signin')
 def upload(request):
     if request.method == 'POST':
-        user = request.user.username
+        user = request.user
+        user_profile = Profile.objects.get(user=user)
         image = request.FILES.get('image_upload')
         caption = request.POST['caption']
 
-        new_post = Post.objects.create(user=user, image=image, caption=caption)
+        new_post = Post.objects.create(user=user_profile, image=image, caption=caption)
         new_post.save()
 
         return redirect('/')
@@ -42,12 +43,12 @@ def like_post(request):
         new_like.save()
         post.no_of_likes+=1
         post.save()
-        return redirect('/')
+        return redirect(f'/#{post_id}')
     else:
         like.delete()
         post.no_of_likes-=1
         post.save()
-        return redirect('/')
+        return redirect(f'/#{post_id}')
     
 
 def signup(request):
@@ -140,3 +141,15 @@ def settings(request):
         return redirect('settings')
         
     return render(request, 'setting.html', ctx)
+
+@login_required(login_url='signin')
+def profile(request, username):
+    ctx = {}
+    user = User.objects.get(username=username)
+    user_profile = Profile.objects.get(user = user)
+    user_posts = Post.objects.filter(user=user_profile)
+    ctx['user_profile'] = user_profile
+    ctx['user_posts'] = user_posts
+    ctx['length_posts'] = len(user_posts)
+    
+    return render(request, 'profile.html', ctx)

@@ -202,17 +202,18 @@
                         <!-- post 1-->
                         {% for post in posts reversed %}
 
-                        <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
+                        <div id="{{post.id}}" class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
     
                             <!-- post header-->
                             <div class="flex justify-between items-center px-4 py-3">
                                 <div class="flex flex-1 items-center space-x-4">
-                                    <a href="#">
+                                    <a href="/profile/{{post.user.user.username}}">
                                         <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">  
-                                            <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="bg-gray-200 border border-white rounded-full w-8 h-8">
+                                            <img src="{{post.user.profileimg.url}}" class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                         </div>
                                     </a>
-                                    <span class="block capitalize font-semibold "> @{{post.user}}</span>
+                                        <span class="block capitalize font-semibold "> @{{post.user}}</span>
+                                    
                                 </div>
                               <div>
                                 <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i> </a>
