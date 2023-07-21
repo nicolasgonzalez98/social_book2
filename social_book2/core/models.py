@@ -34,3 +34,6 @@ class LikePost(models.Model):
 
     def __str__(self):
         return self.username
+
+class FollowersCount(models.Model):
+    pass
