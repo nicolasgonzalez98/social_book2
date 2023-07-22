@@ -36,4 +36,8 @@ class LikePost(models.Model):
         return self.username
 
 class FollowersCount(models.Model):
-    pass
+    follower = models.CharField(max_length=200)
+    user = models.ManyToManyField(Profile)
+    
+    def __str__(self):
+        return self.user
